@@ -1,0 +1,19 @@
+#!/bin/sh
+# Usage: bin/release <build-dir>
+# `BUILD_DIR` will be the location of the app.
+#
+# This script returns a `YAML` formatted hash with two keys:
+#
+#    `addons` is a list of default addons to install.
+#    `default_process_types` is a hash of default Procfile entries.
+
+BUILD_DIR=$( cd $0 ; pwd )
+if [ -x "${BUILD_DIR}"/bin/release ] ; then
+	exec "${BUILD_DIR}"/bin/release "$@"
+else
+	echo "bin/release"
+	echo "======================================================="
+	echo "Inline buildpack not supported for this repo"
+	echo "See https://github.com/zeridon/heroku-buildpack-inline"
+	exit 1
+fi

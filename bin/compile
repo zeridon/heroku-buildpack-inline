@@ -1,0 +1,32 @@
+#!/bin/sh
+# Usage: bin/compile <build-dir> <cache-dir> <env-dir>
+# This script performs the buildpack transformation. `BUILD_DIR` will be the location of the app and `CACHE_DIR` will be a location the buildpack can use to cache build artifacts between builds.
+
+BUILD_DIR=$( cd $1 && pwd )
+CACHE_DIR=$( cd $2 && pwd )
+ENV_DIR=$( cd $3 && pwd )
+
+export_env_dir() {
+	env_dir=$1
+	whitelist_regex=${2:-''}
+	blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
+	if [ -d "$env_dir" ]; then
+		for e in $(ls $env_dir); do
+			echo "$e" | \
+				grep -E "$whitelist_regex" | \
+				grep -qvE "$blacklist_regex" && export "$e=$(cat $env_dir/$e)"
+			:
+		done
+	fi
+}
+
+if [ -x "${BUILD_DIR}"/bin/compile ] ; then
+	export_env_dir ${ENV_DIR}
+	exec "$1"/bin/compile "$@"
+else
+	echo "bin/compile"
+	echo "======================================================="
+	echo "Inline buildpack not supported for this repo"
+	echo "See https://github.com/zeridon/heroku-buildpack-inline"
+	exit 1
+fi

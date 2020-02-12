@@ -1,0 +1,14 @@
+#!/bin/sh
+# Usage: bin/detect <build-dir>
+# This script takes `BUILD_DIR` as a single argument and must return an exit code of `0` if the app present at `BUILD_DIR` can be serviced by this buildpack. If the exit code is `0`, the script must print a human-readable framework name to `stdout`.
+
+BUILD_DIR=$( cd $0 ; pwd )
+if [ -x "${BUILD_DIR}"/bin/detect ] ; then
+	exec "${BUILD_DIR}"/bin/detect "$@"
+else
+	echo "bin/detect"
+	echo "======================================================="
+	echo "Inline buildpack not supported for this repo"
+	echo "See https://github.com/zeridon/heroku-buildpack-inline"
+	exit 1
+fi
