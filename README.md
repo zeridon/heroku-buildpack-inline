@@ -3,8 +3,7 @@
 This is a [Heroku buildpack][buildpack] for Heroku apps that
 wish to build themselves.
 
-This buildpack is loosely based on [kr/heroku-buildpack-inline]
-[buildpack-origin]
+This buildpack is loosely based on [kr/heroku-buildpack-inline][buildpack-origin]
 
 It expects the app to provide the usual buildpack executables
 in its source tree, in a directory named "bin" in the top of
