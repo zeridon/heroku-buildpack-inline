@@ -22,7 +22,7 @@ export_env_dir() {
 
 if [ -x "${BUILD_DIR}"/bin/compile ] ; then
 	export_env_dir ${ENV_DIR}
-	exec "$1"/bin/compile "$@"
+	exec "${BUILD_DIR}"/bin/compile "$@"
 else
 	echo "bin/compile"
 	echo "======================================================="
