@@ -1,5 +1,7 @@
 # Heroku Buildpack: Inline
 
+[![Build Status](https://travis-ci.org/zeridon/heroku-buildpack-inline.svg?branch=master)](https://travis-ci.org/zeridon/heroku-buildpack-inline)
+
 This is a [Heroku buildpack][buildpack] for Heroku apps that
 wish to build themselves.
 
