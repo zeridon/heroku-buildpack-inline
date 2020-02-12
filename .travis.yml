@@ -1,0 +1,10 @@
+language: shell
+
+before_script:
+  - bash -c 'shellcheck --version'
+
+script:
+  - bash -c 'shopt -s globstar nullglob; shellcheck bin/* .profile.d/*.sh'
+
+matrix:
+  fast_finish: true
