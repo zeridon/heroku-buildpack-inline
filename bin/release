@@ -7,7 +7,7 @@
 #    `addons` is a list of default addons to install.
 #    `default_process_types` is a hash of default Procfile entries.
 
-BUILD_DIR=$( cd $1 ; pwd )
+BUILD_DIR=$( cd "$1" && pwd )
 if [ -x "${BUILD_DIR}"/bin/release ] ; then
 	exec "${BUILD_DIR}"/bin/release "$@"
 else

@@ -1,4 +1,5 @@
 # Example of .profile.d script
+# shellcheck shell=sh
 
 # During startup, the container starts a bash shell that source’s all `.sh` scripts in the `.profile.d/` directory before executing the dyno’s command. An application’s config vars will already be present in the environment at the time the scripts are sourced.
 
